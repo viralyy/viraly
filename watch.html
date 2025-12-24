@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Watch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2 id="title"></h2>
+
+  <video id="player" controls></video>
+
+  <a id="download" class="btn" target="_blank">Download</a>
+</div>
+
+<script>
+const params = new URLSearchParams(location.search);
+const id = params.get('v');
+const data = JSON.parse(localStorage.getItem('videos') || '{}');
+
+if (!data[id]) {
+  document.body.innerHTML = '<h2 class="center">Video not found</h2>';
+} else {
+  title.textContent = data[id].title;
+  player.src = data[id].stream;
+  download.href = data[id].download;
+}
+</script>
+
+</body>
+</html>
